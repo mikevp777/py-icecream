@@ -33,7 +33,7 @@ def main():
     except CantSolve:
         print('Не раскладывается')
     else:
-        print(f'Раскладывается как {x}*{a} + {y}*{b} = {k}')
+        print(f'Раскладывается как {x}*{a} + {y}*{b} = {x*a+y*b}')
 
 
 if __name__ == '__main__':
