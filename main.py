@@ -11,7 +11,7 @@ def solve_integer(a, b, k):
     result = []
 
     if k % b == 0:
-        result += (0, k // b)
+        result.append([0, k // b])
 
     # Сам алгоритм (проверка что k делится на a нацело в нем уже заложена):
 
