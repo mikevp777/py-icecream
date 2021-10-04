@@ -1,5 +1,5 @@
 class CantSolve(Exception):
-    """Can't solve ax+by=k in integers"""
+    pass
 
 
 def solve_integer(a, b, k):
