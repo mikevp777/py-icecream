@@ -1,14 +1,19 @@
 def main():
     n = int(input('Введите количество шаров: '))
-    if n in [1, 2, 4, 7]:
-        print('Разложить нельзя')
-    x3 = n - n % 3
-    x5 = n - x3
-    while x3 % 3 != 0 or x5 % 5 != 0:
-        x3 -= 3
-        x5 += 3
+    factor1 = int(input('На сколько раскладывать 1: '))
+    factor2 = int(input('На сколько раскладывать 2: '))
+    if factor2 < factor1:
+        factor1, factor2 = factor2, factor1
+    x_factor1 = n - n % factor1
+    x_factor2 = n - x_factor1
+    while x_factor1 % factor1 != 0 or x_factor2 % factor2 != 0:
+        x_factor1 -= factor1
+        x_factor2 += factor1
+        if x_factor1 < factor1:
+            print('Разложить нельзя')
+            return
 
-    print(f'Раскладывается как {x3//3}*3 + {x5//5}*5')
+    print(f'Раскладывается как {x_factor1//factor1}*{factor1} + {x_factor2//factor2}*{factor2}')
 
 
 if __name__ == '__main__':
