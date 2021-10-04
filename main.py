@@ -8,19 +8,23 @@ def solve_integer(a, b, k):
     # без этой проверки в некоторых случаях алгоритм не сработает
     # Если делится - решение найдено
 
+    result = []
+
     if k % b == 0:
-        return 0, k // b
+        result += (0, k // b)
 
     # Сам алгоритм (проверка что k делится на a нацело в нем уже заложена):
 
     x_a = k - k % a
     y_b = k - x_a
-    while y_b % b != 0:
+    while x_a >= a:
+        if y_b % b == 0:
+            result.append([x_a//a, y_b//b])
         x_a -= a
         y_b += a
-        if x_a < a:
-            raise CantSolve  # если решения нет - вызывает исключение
-    return x_a//a, y_b//b
+    if result:
+        return result
+    raise CantSolve  # если решения нет - вызывает исключение
 
 
 def main():
@@ -29,11 +33,12 @@ def main():
     a = int(input('a: '))
     b = int(input('b: '))
     try:
-        x, y = solve_integer(a, b, k)
+        solutions = solve_integer(a, b, k)
     except CantSolve:
         print('Не раскладывается')
     else:
-        print(f'Раскладывается как {x}*{a} + {y}*{b} = {x*a+y*b}')
+        for x, y in solutions:
+            print(f'Раскладывается как {x}*{a} + {y}*{b} = {x*a+y*b}')
 
 
 if __name__ == '__main__':
